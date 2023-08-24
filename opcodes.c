@@ -8,16 +8,17 @@
  */
 void op_push(stack_t **stack, unsigned int line_number)
 {
-    char *arg = strtok(NULL, "\n ");
+	char *arg = strtok(NULL, "\n ");
 
-    if (arg == NULL || !is_number(arg))
-    {
-        fprintf(stderr, "L%d: usage: push integer\n", line_number);
-        exit(EXIT_FAILURE);
-    }
+	if (arg == NULL || !is_number(arg))
+	{
+	fprintf(stderr, "L%d: usage: push integer\n", line_number);
+	exit(EXIT_FAILURE);
+	}
 
-    int value = atoi(arg);
-    push_stack(stack, value); // Push onto the stack
+	int value = atoi(arg);
+
+	push_stack(stack, value);
 }
 
 /**
@@ -28,15 +29,15 @@ void op_push(stack_t **stack, unsigned int line_number)
  */
 void op_pall(stack_t **stack, unsigned int line_number)
 {
-    (void)line_number;
+	(void)line_number;
 
-    stack_t *temp = *stack;
+	stack_t *temp = *stack;
 
-    while (temp != NULL)
-    {
-        printf("%d\n", temp->n);
-        temp = temp->next;
-    }
+	while (temp != NULL)
+	{
+	printf("%d\n", temp->n);
+	temp = temp->next;
+	}
 }
 
 /**
@@ -47,20 +48,21 @@ void op_pall(stack_t **stack, unsigned int line_number)
  */
 void push_stack(stack_t **stack, int value)
 {
-    stack_t *new_node = malloc(sizeof(stack_t));
-    if (new_node == NULL)
-    {
-        fprintf(stderr, "Memory allocation error\n");
-        exit(EXIT_FAILURE);
-    }
+	stack_t *new_node = malloc(sizeof(stack_t));
 
-    new_node->n = value;
-    new_node->prev = NULL;
-    new_node->next = *stack;
+	if (new_node == NULL)
+	{
+	fprintf(stderr, "Memory allocation error\n");
+	exit(EXIT_FAILURE);
+	}
 
-    if (*stack != NULL)
-        (*stack)->prev = new_node;
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = *stack;
 
-    *stack = new_node;
+	if (*stack != NULL)
+	(*stack)->prev = new_node;
+
+	*stack = new_node;
 }
 

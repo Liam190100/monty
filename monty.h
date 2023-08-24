@@ -57,4 +57,5 @@ extern global_var var_global;
 void op_push(stack_t **stack, unsigned int line_number);
 void op_pall(stack_t **stack, unsigned int line_number);
 void push_stack(stack_t **stack, int value);
+void op_pint(stack_t **stack, unsigned int line_number);
 #endif
